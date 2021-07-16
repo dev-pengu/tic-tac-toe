@@ -1,0 +1,127 @@
+<DOCTYPE! html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<!-- JavaScript Bundle with Popper -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<script src="./scripts/main.js"></script>
+		<link rel="stylesheet" href="./styles/main.css"/>
+	</head>
+	<body class="bg-secondary">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">My Library</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a id="home" class="nav-link active" aria-current="page" href="#">Home</a>
+					</li>
+					<li class="nav-item">
+						<a id="current" class="nav-link" href="#">Currently Reading</a>
+					</li>
+					<li class="nav-item">
+						<a id="want" class="nav-link" href="#">Want To Read</a>
+					</li>
+					<li class="nav-item">
+						<a id="read" class="nav-link" href="#">Read</a>
+					</li>
+				</ul>
+				<div class="d-flex">
+					<input id="searchbox" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+					<button id="search-btn" class="btn btn-outline-light" type="button">Search</button>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<main>
+		<div class="container-fluid">
+			<div class="row h-100">
+				<div class="col-lg-9 col-12 col-md-7" id="cards">
+					<div class="row" id="cardsContainer">
+						
+					</div>
+				</div>
+				<div class="col-lg-3 col-12 col-md-5 bg-light">
+				<!-- Reading Stats -->
+					<div class="w-75 mx-auto border-top border-bottom border-2 mt-5">
+						<h3 class="border-bottom text-center mt-2 pb-2">Reading Stats</h3>
+						<div class="mx-1 my-1">
+							<span class="h5">Total Books</span>
+							<span class="float-end" id="totalBooks"></span>
+						</div>
+						<div class="mx-1 my-1">
+							<span class="h5">Currently Reading</span>
+							<span class="float-end" id="reading"></span>
+						</div>
+						<div class="mx-1 my-1">
+							<span class="h5">Books Read</span>
+							<span class="float-end" id="booksRead"></span>
+						</div>
+						<div class="mx-1 my-1">
+							<span class="h5">Pages Read</span>
+							<span class="float-end" id="pagesRead"></span>
+						</div>
+					</div>
+					
+					<!-- Book form -->
+					<div class="w-75 mx-auto mt-5">
+						<form class="bg-white border p-2" id="book-form">
+							<h5 id="add-title" class="text-center">Add a Book</h5>
+							<h5 id="edit-title" class="text-center d-none">Edit Book</h5>
+							<input id="book-index" type="text" class="d-none">
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="title-text">Title</span>
+								<input tabindex="1" id="book-title" type="text" class="form-control" placeholder="The Hobbit" aria-label="Book Title" aria-describedby="title-text">
+							</div>
+							
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="author-text">Author</span>
+								<input tabindex="2" id="book-author" type="text" class="form-control" placeholder="J.R.R. Tolkien" aria-label="Book Author" aria-describedby="author-text">
+							</div>
+							
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="pages-text">Total Pages</span>
+								<input tabindex="3" id="book-pages" type="number" class="form-control" placeholder="320" aria-label="Book Total Pages" aria-describedby="pages-text">
+							</div>
+							
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="read-text">Pages Read</span>
+								<input tabindex="4" id="book-read-pages" type="number" class="form-control" placeholder="0" aria-label="Book Pages Read" aria-describedby="read-text">
+							</div>
+							
+							<div class="input-group mb-3">
+								<span class="input-group-text">Mark as Read?</span>
+								<span class="input-group-text bg-white">
+									<input tabindex="5" id="book-read" class="form-check-input mt-0 mx-2" type="checkbox" value="" aria-label="Mark Book as Read">
+								</span>
+							</div>
+							
+							<div class="input-group mb-3">
+								<span class="input-group-text" id="url-text">Image URL</span>
+								<input tabindex="6" id="book-img-url" type="text" class="form-control" placeholder="somewhere.com/img.jpg" aria-label="Book Image URL" aria-describedby="url-text">
+							</div>
+							
+							<div id="error-alert" class="alert alert-danger d-none" role="alert">
+							
+							</div>
+							
+							<div id="form-submit-group" class="input-group mb-3 d-flex justify-content-center">
+								<button type="button" tabindex="7" id="form-submit"	class="btn btn-outline-success">Add</button>
+							</div>
+							<div id="form-edit-group" class="input-group mb-3 d-flex justify-content-center d-none">
+								<button type="button" tabindex="7" id="form-edit" class="btn btn-outline-info">Edit</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	</body>
+</html>
