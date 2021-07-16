@@ -1,3 +1,47 @@
 body {
 		font-family: 'Source Code Pro', var(--bs-font-sans-serif), sans-serif !important;
 }
+
+.slot {
+	min-width: 150px;
+	min-height: 150px;
+}
+
+.mode-btn {
+	width: 75px;
+}
+
+.player-ico {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	font-size: 96px;
+}
+
+#board-container {
+	width: 50%;
+}
+
+@media (max-width: 1321px) and (min-width: 701px) {
+	#board-container {
+		width: 75%;
+	}
+	
+	.slot {
+		min-width: 125px;
+		min-height: 125px;
+	}
+}
+
+@media (max-width: 700px) {
+	#board-container {
+		width: 100%;
+	}
+	.slot {
+		min-width: 100px;
+		min-height: 100px;
+	}
+}
+
