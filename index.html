@@ -1,127 +1,137 @@
-<DOCTYPE! html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
+		<title>Tic Tac Toe | Lippy 515</title>
+		<script src="./scripts/index.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Code+Pro">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined">
+		<link rel="stylesheet" href="./styles/main.css">
+		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- CSS only -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<!-- JavaScript Bundle with Popper -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-		<script src="./scripts/main.js"></script>
-		<link rel="stylesheet" href="./styles/main.css"/>
 	</head>
-	<body class="bg-secondary">
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">My Library</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<a id="home" class="nav-link active" aria-current="page" href="#">Home</a>
-					</li>
-					<li class="nav-item">
-						<a id="current" class="nav-link" href="#">Currently Reading</a>
-					</li>
-					<li class="nav-item">
-						<a id="want" class="nav-link" href="#">Want To Read</a>
-					</li>
-					<li class="nav-item">
-						<a id="read" class="nav-link" href="#">Read</a>
-					</li>
-				</ul>
-				<div class="d-flex">
-					<input id="searchbox" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-					<button id="search-btn" class="btn btn-outline-light" type="button">Search</button>
+	<body>
+		<main>
+			<div class="container-fluid">
+				<h1 class="text-center mt-3">Tic-Tac-Toe</h1>
+				<div class="row mt-4">
+					<div class="col d-flex justify-content-center">
+						<div class="btn btn-outline-danger btn-lg mx-3" id="restartBtn">Restart Round</div>
+						<div class="btn btn-outline-warning btn-lg mx-3" id="resetBtn">Reset Game</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12 col-md-4 col-lg-2">
+						<div class="row mt-5">
+							<div class="border border-2 border-info rounded py-1 px-2 col ms-4">
+								<h5 class="text-muted text-center w-75 border-bottom mb-1 mx-auto">Options</h5>
+								<div id="mode-select" class="d-flex justify-content-center mt-2 mb-4">
+									<div id="pvpModeBtn" class="btn btn-info btn-sm mode-btn mx-1">PVP</div>
+									<div id="aiModeBtn" class="btn btn-outline-info btn-sm mode-btn mx-1">AI</div>
+								</div>
+								<div id="pvp-options">
+									<div class="input-group input-group-sm my-2">
+										<span class="input-group-text">Player 1</span>
+										<input class="form-control" placeholder="Enter Name" name="player1" id="player1">
+									</div>
+									<div class="input-group input-group-sm my-2">
+										<span class="input-group-text">Player 2</span>
+										<input class="form-control" placeholder="Enter Name" name="player2" id="player2">
+									</div>
+									<div class="d-flex justify-content-center my-4">
+										<div id="pvpSubmitBtn" class="btn btn-sm btn-outline-success px-5">Submit</div>
+									</div>
+								</div>
+								<div id="ai-options" class="d-none">
+									<div class="input-group input-group-sm my-2">
+										<span class="input-group-text">AI Difficulty</span>
+										<select class="form-select" aria-label="AI Difficulty Select">
+											<option value="1" selected>Easy</option>
+											<option value="2">Medium</option>
+											<option value="3">Hard</option>
+										</select>
+									</div>
+									<div class="input-group input-group-sm my-2">
+										<span class="input-group-text">Player Choice</span>
+										<div class="form-control d-flex justify-content-center">
+											<span class="mx-3">X</span>
+											<span class="form-check form-switch">
+												<input class="form-check-input" type="checkbox" id="player-selection">
+											</span>
+											<span class="mx-2">O</span>
+										</div>
+									</div>
+									<div class="d-flex justify-content-center my-4">
+										<div id="aiSubmitBtn" class="btn btn-sm btn-outline-success px-5">Submit</div>
+									</div>
+								</div>
+								<div class="alert alert-danger d-none" id="error-alert">Error setting options.</div>
+								<div class="alert alert-success d-none" id="success-alert">Options set! To change the settings, reset the game.</div>
+							</div>
+						</div>
+						<div class="row mt-4">
+							<div class="border border-2 border-success rounded py-1 px-2 col ms-4">
+								<h5 class="text-muted text-center w-75 border-bottom mb-1 mx-auto">Scoreboard</h5>
+								<div class="row mt-3">
+									<span id="player1-name" class="col-6 text-start ms-2">Player 1</span>
+									<span id="player1-score" class="text-end col-5">0</span>
+								</div>
+								<div class="row mt-4 mb-3">
+									<span id="player2-name" class="col-6 text-start ms-2">Player 2</span>
+									<span id="player2-score" class="text-end col-5">0</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-8 col-lg-8">
+						<div id="board-container" class="mx-auto my-5">
+							<div class="row border-bottom border-2 border-dark">
+								<div id="slot_0" class="col-4 border-end slot border-2 border-dark">
+								
+								</div>
+								<div id="slot_1" class="col-4 slot">
+								
+								</div>
+								<div id="slot_2" class="col-4 border-start slot border-2 border-dark">
+								
+								</div>
+							</div>
+							<div class="row">
+								<div id="slot_3" class="col-4 border-end slot border-2 border-dark">
+								
+								</div>
+								<div id="slot_4" class="col-4 slot">
+								
+								</div>
+								<div id="slot_5" class="col-4 border-start slot border-2 border-dark">
+								
+								</div>
+							</div>
+							<div class="row border-top border-2 border-dark">
+								<div id="slot_6" class="col-4 border-end slot border-2 border-dark">
+								
+								</div>
+								<div id="slot_7" class="col-4 slot">
+								
+								</div>
+								<div id="slot_8" class="col-4 border-start slot border-2 border-dark">
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12 col-md-4 col-lg-4"></div>
+					<div class="col-12 col-md-8 col-lg-4">
+						<div id="message" class="alert alert-success d-none">Player 1 Wins the Round!</div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</nav>
-	<main>
-		<div class="container-fluid">
-			<div class="row h-100">
-				<div class="col-lg-9 col-12 col-md-7" id="cards">
-					<div class="row" id="cardsContainer">
-						
-					</div>
-				</div>
-				<div class="col-lg-3 col-12 col-md-5 bg-light">
-				<!-- Reading Stats -->
-					<div class="w-75 mx-auto border-top border-bottom border-2 mt-5">
-						<h3 class="border-bottom text-center mt-2 pb-2">Reading Stats</h3>
-						<div class="mx-1 my-1">
-							<span class="h5">Total Books</span>
-							<span class="float-end" id="totalBooks"></span>
-						</div>
-						<div class="mx-1 my-1">
-							<span class="h5">Currently Reading</span>
-							<span class="float-end" id="reading"></span>
-						</div>
-						<div class="mx-1 my-1">
-							<span class="h5">Books Read</span>
-							<span class="float-end" id="booksRead"></span>
-						</div>
-						<div class="mx-1 my-1">
-							<span class="h5">Pages Read</span>
-							<span class="float-end" id="pagesRead"></span>
-						</div>
-					</div>
-					
-					<!-- Book form -->
-					<div class="w-75 mx-auto mt-5">
-						<form class="bg-white border p-2" id="book-form">
-							<h5 id="add-title" class="text-center">Add a Book</h5>
-							<h5 id="edit-title" class="text-center d-none">Edit Book</h5>
-							<input id="book-index" type="text" class="d-none">
-							<div class="input-group mb-3">
-								<span class="input-group-text" id="title-text">Title</span>
-								<input tabindex="1" id="book-title" type="text" class="form-control" placeholder="The Hobbit" aria-label="Book Title" aria-describedby="title-text">
-							</div>
-							
-							<div class="input-group mb-3">
-								<span class="input-group-text" id="author-text">Author</span>
-								<input tabindex="2" id="book-author" type="text" class="form-control" placeholder="J.R.R. Tolkien" aria-label="Book Author" aria-describedby="author-text">
-							</div>
-							
-							<div class="input-group mb-3">
-								<span class="input-group-text" id="pages-text">Total Pages</span>
-								<input tabindex="3" id="book-pages" type="number" class="form-control" placeholder="320" aria-label="Book Total Pages" aria-describedby="pages-text">
-							</div>
-							
-							<div class="input-group mb-3">
-								<span class="input-group-text" id="read-text">Pages Read</span>
-								<input tabindex="4" id="book-read-pages" type="number" class="form-control" placeholder="0" aria-label="Book Pages Read" aria-describedby="read-text">
-							</div>
-							
-							<div class="input-group mb-3">
-								<span class="input-group-text">Mark as Read?</span>
-								<span class="input-group-text bg-white">
-									<input tabindex="5" id="book-read" class="form-check-input mt-0 mx-2" type="checkbox" value="" aria-label="Mark Book as Read">
-								</span>
-							</div>
-							
-							<div class="input-group mb-3">
-								<span class="input-group-text" id="url-text">Image URL</span>
-								<input tabindex="6" id="book-img-url" type="text" class="form-control" placeholder="somewhere.com/img.jpg" aria-label="Book Image URL" aria-describedby="url-text">
-							</div>
-							
-							<div id="error-alert" class="alert alert-danger d-none" role="alert">
-							
-							</div>
-							
-							<div id="form-submit-group" class="input-group mb-3 d-flex justify-content-center">
-								<button type="button" tabindex="7" id="form-submit"	class="btn btn-outline-success">Add</button>
-							</div>
-							<div id="form-edit-group" class="input-group mb-3 d-flex justify-content-center d-none">
-								<button type="button" tabindex="7" id="form-edit" class="btn btn-outline-info">Edit</button>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</main>
+		</main>
 	</body>
 </html>
