@@ -25,9 +25,9 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-12 col-md-4 col-lg-2">
+					<div class="col-12 col-md-4 col-xl-2">
 						<div class="row mt-5">
-							<div class="border border-2 border-info rounded py-1 px-2 col ms-4">
+							<div id="options" class="border border-2 border-info rounded py-1 px-2 col ms-4">
 								<h5 class="text-muted text-center w-75 border-bottom mb-1 mx-auto">Options</h5>
 								<div id="mode-select" class="d-flex justify-content-center mt-2 mb-4">
 									<div id="pvpModeBtn" class="btn btn-info btn-sm mode-btn mx-1">PVP</div>
@@ -42,11 +42,12 @@
 										<span class="input-group-text">Player 2</span>
 										<input class="form-control" placeholder="Enter Name" name="player2" id="player2">
 									</div>
-									<div class="d-flex justify-content-center my-4">
-										<div id="pvpSubmitBtn" class="btn btn-sm btn-outline-success px-5">Submit</div>
-									</div>
 								</div>
 								<div id="aiOptions" class="d-none">
+									<div class="input-group input-group-sm my-2">
+										<span class="input-group-text">Player Name</span>
+										<input class="form-control" placeholder="Enter Name" name="playerName" id="playerName">
+									</div>
 									<div class="input-group input-group-sm my-2">
 										<span class="input-group-text">AI Difficulty</span>
 										<select class="form-select" aria-label="AI Difficulty Select">
@@ -60,14 +61,14 @@
 										<div class="form-control d-flex justify-content-center">
 											<span class="mx-3">X</span>
 											<span class="form-check form-switch">
-												<input class="form-check-input" type="checkbox" id="player-selection">
+												<input class="form-check-input" type="checkbox" id="playerSelection">
 											</span>
 											<span class="mx-2">O</span>
 										</div>
 									</div>
-									<div class="d-flex justify-content-center my-4">
-										<div id="aiSubmitBtn" class="btn btn-sm btn-outline-success px-5">Submit</div>
-									</div>
+								</div>
+								<div class="d-flex justify-content-center my-4">
+									<div id="submitBtn" class="btn btn-sm btn-outline-success px-5">Play!</div>
 								</div>
 								<div class="alert alert-danger d-none" id="error-alert">Error setting options.</div>
 								<div class="alert alert-success d-none" id="success-alert">Options set! To change the settings, reset the game.</div>
@@ -87,8 +88,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-12 col-md-8 col-lg-8">
-						<div id="board-container" class="mx-auto my-5">
+					<div class="col-12 col-md-8 col-xl-8">
+						<div id="boardContainer" class="mx-auto my-5">
 							<div class="row border-bottom border-2 border-dark">
 								<div id="slot_0" class="col-4 border-end slot border-2 border-dark">
 								
@@ -127,8 +128,8 @@
 				</div>
 				<div class="row">
 					<div class="col-12 col-md-4 col-lg-4"></div>
-					<div class="col-12 col-md-8 col-lg-4">
-						<div id="message" class="alert alert-success d-none">Player 1 Wins the Round!</div>
+					<div class="col-12 col-md-8 col-lg-4" id="alertContainer">
+						
 					</div>
 				</div>
 			</div>
