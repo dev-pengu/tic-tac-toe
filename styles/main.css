@@ -20,12 +20,12 @@ body {
 	font-size: 96px;
 }
 
-#board-container {
+#boardContainer {
 	width: 50%;
 }
 
 @media (max-width: 1321px) and (min-width: 701px) {
-	#board-container {
+	#boardContainer {
 		width: 75%;
 	}
 	
@@ -36,7 +36,7 @@ body {
 }
 
 @media (max-width: 700px) {
-	#board-container {
+	#boardContainer {
 		width: 100%;
 	}
 	.slot {
