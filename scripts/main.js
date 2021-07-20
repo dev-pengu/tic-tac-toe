@@ -130,7 +130,11 @@ const game = (() => {
 		}
 	};
 	
-	
+	const checkMode = (str) => {
+		if (currentMode === str)
+			return true;
+		return false;
+	}
 	
 	const checkForWinner = () => {
 		let winner = -1;
@@ -230,7 +234,6 @@ const game = (() => {
 	};
 	
 	return {
-		currentMode,
 		players,
 		gameboard,
 		play,
@@ -240,7 +243,7 @@ const game = (() => {
 		restartRound,
 		resetGame,
 		toggleMode,
-		turnBit
+		checkMode
 	};
 })();
 
@@ -265,7 +268,7 @@ const util = (() => {
 			qid('aiModeBtn').classList.remove('btn-info');
 			qid('aiModeBtn').classList.add('btn-outline-info');
 			
-			if (game.currentMode != mode.PVP) {
+			if (!game.checkMode(mode.PVP)) {
 				toggleVis(document.querySelector('#pvpOptions'));
 				toggleVis(document.querySelector('#aiOptions'));
 				game.toggleMode();
@@ -276,7 +279,7 @@ const util = (() => {
 			qid('pvpModeBtn').classList.remove('btn-info');
 			qid('pvpModeBtn').classList.add('btn-outline-info');
 			
-			if (game.currentMode != mode.AI) {
+			if (!game.checkMode(mode.AI)) {
 				toggleVis(document.querySelector('#pvpOptions'));
 				toggleVis(document.querySelector('#aiOptions'));
 				game.toggleMode();
